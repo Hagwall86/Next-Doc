@@ -2,6 +2,8 @@
 import Link from "next/link";
 import { useState, ChangeEvent, FormEvent } from "react";
 import { Editor } from "@tinymce/tinymce-react";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 interface FormData {
   title: string;
@@ -10,13 +12,13 @@ interface FormData {
 }
 
 const EditForm: React.FC = () => {
+  const searchParams = useSearchParams()
   const [formData, setFormData] = useState<FormData>({
     title: "",
     text: "",
     author: "",
   });
 
-  const [loading, setLoading] = useState(true);
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -27,9 +29,15 @@ const EditForm: React.FC = () => {
     });
   };
 
+  const handleEditorChange = (text: string, editor: any) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      text: text
+    }))
+  }
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
     const res = await fetch("api", {
       method: "POST",
       headers: {
@@ -37,14 +45,12 @@ const EditForm: React.FC = () => {
       },
       body: JSON.stringify(formData),
     });
-    setLoading(false);
 
     setFormData({ title: "", text: "", author: "" });
   };
 
   return (
     <div className="max-w-md mx-auto p-6 bg-white rounded-md shadow-md">
-      {/* <h1 className="text-black text-2xl font-semibold mb-4">Nytt document</h1> */}
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label
@@ -73,6 +79,7 @@ const EditForm: React.FC = () => {
               "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat",
           }}
           value={formData.text}
+          onEditorChange={handleEditorChange}
         />
         <div className="mb-4">
           <label
