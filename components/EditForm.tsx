@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
+import { Editor } from "@tinymce/tinymce-react";
 
 interface FormData {
   title: string;
@@ -15,6 +16,7 @@ const EditForm: React.FC = () => {
     author: "",
   });
 
+  const [loading, setLoading] = useState(true);
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -27,7 +29,7 @@ const EditForm: React.FC = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    setLoading(true);
     const res = await fetch("api", {
       method: "POST",
       headers: {
@@ -35,13 +37,14 @@ const EditForm: React.FC = () => {
       },
       body: JSON.stringify(formData),
     });
+    setLoading(false);
 
     setFormData({ title: "", text: "", author: "" });
   };
 
   return (
     <div className="max-w-md mx-auto p-6 bg-white rounded-md shadow-md">
-      <h1 className="text-black text-2xl font-semibold mb-4">Nytt document</h1>
+      {/* <h1 className="text-black text-2xl font-semibold mb-4">Nytt document</h1> */}
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label
@@ -60,10 +63,17 @@ const EditForm: React.FC = () => {
           />
         </div>
 
-
-
-
-
+        <Editor
+          id="editor"
+          apiKey={process.env.NEXT_PUBLIC_TINY_API}
+          init={{
+            plugins:
+              "mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss",
+            toolbar:
+              "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat",
+          }}
+          value={formData.text}
+        />
         <div className="mb-4">
           <label
             htmlFor="author"
