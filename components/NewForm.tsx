@@ -11,13 +11,15 @@ interface FormData {
   author: string;
 }
 
-const EditForm: React.FC = () => {
-  const searchParams = useSearchParams()
+const NewForm: React.FC = () => {
+  const searchParams = useSearchParams();
   const [formData, setFormData] = useState<FormData>({
     title: "",
     text: "",
     author: "",
   });
+
+  const router = useRouter();
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -32,9 +34,9 @@ const EditForm: React.FC = () => {
   const handleEditorChange = (text: string, editor: any) => {
     setFormData((prevData) => ({
       ...prevData,
-      text: text
-    }))
-  }
+      text: text,
+    }));
+  };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -46,11 +48,14 @@ const EditForm: React.FC = () => {
       body: JSON.stringify(formData),
     });
 
-    setFormData({ title: "", text: "", author: "" });
+    // setFormData({ title: "", text: "", author: "" });
+    if (res.ok) {
+      router.push("/");
+    }
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-white rounded-md shadow-md">
+    <div className="max-w-md mb-32 mt-10 mx-auto p-6 bg-violet-200 rounded-md shadow-md">
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label
@@ -84,7 +89,7 @@ const EditForm: React.FC = () => {
         <div className="mb-4">
           <label
             htmlFor="author"
-            className="block text-sm font-medium text-gray-600"
+            className="block text-sm font-medium text-gray-600 "
           >
             Skapad av
           </label>
@@ -117,4 +122,4 @@ const EditForm: React.FC = () => {
   );
 };
 
-export default EditForm;
+export default NewForm;

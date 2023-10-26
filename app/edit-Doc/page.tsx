@@ -36,7 +36,7 @@ export default function EditDoc() {
         title: data[0].title,
         text: data[0].text,
         author: data[0].author,
-      })
+      });
     };
     if (docId) getDoc();
   }, [docId]);

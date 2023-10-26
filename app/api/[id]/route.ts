@@ -3,7 +3,6 @@ import { NextResponse } from "next/server"
 
 export async function GET (req: Request, {params}: {params: {id: string}}) {
   const {id} = params;
-  console.log("id", id);
 
   const results = await dbQuery({
     query: "SELECT * FROM documents where id =" + parseInt(id)
