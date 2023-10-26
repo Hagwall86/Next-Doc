@@ -3,7 +3,7 @@ import { NextResponse } from "next/server"
 
 export async function GET (req: Request, res: Response) {
   const results = await dbQuery({
-    query: "SELECT * FROM documents"
+    query: "SELECT * FROM documents WHERE deleted=0"
   })
   return NextResponse.json(results, {status: 200})
 }

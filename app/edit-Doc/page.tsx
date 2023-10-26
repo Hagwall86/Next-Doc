@@ -32,6 +32,11 @@ export default function EditDoc() {
       const data = await res.json();
       console.log("Doccet", data[0]);
       setFullDoc(data[0]);
+      setFormData({
+        title: data[0].title,
+        text: data[0].text,
+        author: data[0].author,
+      })
     };
     if (docId) getDoc();
   }, [docId]);
@@ -84,8 +89,7 @@ export default function EditDoc() {
               type="text"
               id="title"
               name="title"
-              placeholder={fullDoc.title}
-              value=""
+              defaultValue={fullDoc.title}
               onChange={handleChange}
               className="text-black w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
             />
@@ -114,7 +118,7 @@ export default function EditDoc() {
               type="text"
               id="author"
               name="author"
-              value={fullDoc.author}
+              defaultValue={fullDoc.author}
               onChange={handleChange}
               className="text-black w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
             />

@@ -9,7 +9,7 @@ export interface Doc {
   text: string;
   author: string;
   createdAt: Date;
-  deleted: boolean
+  deleted: boolean;
 }
 
 export default function AllDocs() {
@@ -28,17 +28,40 @@ export default function AllDocs() {
 
   const handelEdit = (doc: Doc) => {
     router.push(`/edit-Doc/?id=${doc.id}`);
-  }
+  };
+
+  const handelDelete = async (doc: Doc) => {
+    const res = await fetch("/api/" + doc.id, {
+      method: "DELETE",
+    });
+
+    if (res.ok) {
+      setDocs(docs.filter((keep: Doc) => keep.id != doc.id));
+    }
+  };
 
   return (
-    <div>
+    <div className="flex">
       <ul className="font-bold text-2xl">
         {docs.map((doc: Doc) => (
-          <li key={doc.id}>
-            {doc.title} - {doc.author}{" "}
-            <button className="bg-blue text-green-600" onClick={(e) => handelEdit(doc)}>Redigera</button> |-|{" "}
-            <button>Ta bort</button>
-          </li>
+          <div className="flex justify-between border rounded-md border-blue-500 " key={doc.id}>
+            <li>
+              {doc.title} - {doc.author}{" "}
+              <button
+                className="bg-blue text-green-600"
+                onClick={(e) => handelEdit(doc)}
+              >
+                Redigera
+              </button>{" "}
+              |-|{" "}
+              <button
+                className="bg-red text-white"
+                onClick={(e) => handelDelete(doc)}
+              >
+                Ta bort
+              </button>
+            </li>
+          </div>
         ))}
       </ul>
     </div>
