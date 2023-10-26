@@ -20,11 +20,12 @@ export default function RootLayout({
       <body>
         <Header />
         <main className="bg-neutral-800 h-full min-h-[calc(100vh-2.3rem)] flex justify-center relative">
-          {/* Bakgrundsbild */}
-          <Image src={pic} alt="Bild på ett bibliotek" className="w-full h-full object-cover absolute mix-blend-overlay" />
-
-          {/* Innehåll med genomskinlighet */}
-          <div className="w-full mt-3 max-w-screen-lg flex justify-center" style={{ zIndex: 1}}>
+          <Image
+            src={pic}
+            alt="Bild på ett bibliotek"
+            className="w-full h-full object-cover absolute mix-blend-overlay"
+          />
+          <div className="w-full mt-3 max-w-screen-lg flex justify-center z-10">
             {children}
           </div>
         </main>

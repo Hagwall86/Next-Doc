@@ -29,7 +29,6 @@ export default function Page() {
     };
     getSingleDoc();
   }, [docId]);
-  console.log(singleDoc);
 
   let formattedDate = "";
   if (singleDoc) {

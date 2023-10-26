@@ -24,8 +24,6 @@ export async function PATCH(req: Request, {params}: {params: {id: string}}) {
 
 export async function DELETE (req: Request, {params}: {params: {id: string}}) {
   const {id} = params;
-  console.log("id", id);
-
 
   //*HARD DELETE Ska den oxå användas om det finns tid?
   // const results = await dbQuery({

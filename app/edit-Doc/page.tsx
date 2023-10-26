@@ -30,7 +30,6 @@ export default function EditDoc() {
     const getDoc = async () => {
       const res = await fetch("api/" + docId);
       const data = await res.json();
-      console.log("Doccet", data[0]);
       setFullDoc(data[0]);
       setFormData({
         title: data[0].title,

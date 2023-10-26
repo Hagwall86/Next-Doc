@@ -2,7 +2,6 @@
 import Link from "next/link";
 import { useState, ChangeEvent, FormEvent } from "react";
 import { Editor } from "@tinymce/tinymce-react";
-import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 
 interface FormData {
@@ -12,7 +11,6 @@ interface FormData {
 }
 
 const NewForm: React.FC = () => {
-  const searchParams = useSearchParams();
   const [formData, setFormData] = useState<FormData>({
     title: "",
     text: "",
@@ -48,7 +46,6 @@ const NewForm: React.FC = () => {
       body: JSON.stringify(formData),
     });
 
-    // setFormData({ title: "", text: "", author: "" });
     if (res.ok) {
       router.push("/");
     }
@@ -73,7 +70,6 @@ const NewForm: React.FC = () => {
             className="text-black w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
           />
         </div>
-
         <Editor
           id="editor"
           apiKey={process.env.NEXT_PUBLIC_TINY_API}
