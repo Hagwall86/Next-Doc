@@ -95,17 +95,18 @@ export default function EditDoc() {
           </div>
           <div className="flex min-h-3xl">
             <Editor
-            id="editor"
-            apiKey={process.env.NEXT_PUBLIC_TINY_API}
-            init={{
-              plugins:
-                "mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss",
-              toolbar:
-                "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat",
-            }}
-            initialValue={fullDoc.text}
-            onEditorChange={handleEditorChange}
-          />
+              id="editor"
+              apiKey={process.env.NEXT_PUBLIC_TINY_API}
+              init={{
+                height: 600,
+                plugins:
+                  "mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss",
+                toolbar:
+                  "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat",
+              }}
+              initialValue={fullDoc.text}
+              onEditorChange={handleEditorChange}
+            />
           </div>
 
           <div className="mb-4">

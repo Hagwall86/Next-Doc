@@ -75,6 +75,7 @@ const NewForm: React.FC = () => {
           id="editor"
           apiKey={process.env.NEXT_PUBLIC_TINY_API}
           init={{
+            height: 600,
             plugins:
               "mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss",
             toolbar:
