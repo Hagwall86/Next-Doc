@@ -24,8 +24,9 @@ export default function RootLayout({
             src={pic}
             alt="Bild på ett bibliotek"
             className="w-full h-full object-cover absolute mix-blend-overlay"
+            priority={true}
           />
-          <div className="w-full mt-3 max-w-screen-lg flex justify-center z-10">
+          <div className="mt-3 flex justify-center z-10">
             {children}
           </div>
         </main>

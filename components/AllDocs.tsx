@@ -63,13 +63,16 @@ export default function AllDocs() {
         <div className="flex">
           <h2 className="text-2xl text-white font-bold">Alla dokument</h2>
         </div>
-        <ul className="font-bold text-2xl flex gap-2 flex-col">
+        <ul className="font-bold text-2xl flex gap-2 flex-col-reverse">
           {docs.map((doc: Doc) => (
             <li
               className="border rounded-md border-black bg-cyan-100 p-4 mb-4"
               key={doc.id}
             >
-              <h4 className="cursor-pointer" onClick={() => handleSingleDoc(doc)}>
+              <h4
+                className="cursor-pointer"
+                onClick={() => handleSingleDoc(doc)}
+              >
                 {doc.title} av {doc.author}
               </h4>
               <div className="mt-4">

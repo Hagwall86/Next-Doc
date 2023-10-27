@@ -73,7 +73,7 @@ export default function EditDoc() {
     }
   };
   return (
-    <div className="max-w-md mx-auto p-6 bg-white rounded-md shadow-md">
+    <div className="max-w-3xl mx-auto p-6 bg-slate-200 rounded-md shadow-md">
       <h1 className="mb-4 text-3xl">Redigera Dokumentet</h1>
       {fullDoc ? (
         <form onSubmit={handleSubmit}>
@@ -93,8 +93,8 @@ export default function EditDoc() {
               className="text-black w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
             />
           </div>
-
-          <Editor
+          <div className="flex min-h-3xl">
+            <Editor
             id="editor"
             apiKey={process.env.NEXT_PUBLIC_TINY_API}
             init={{
@@ -106,6 +106,8 @@ export default function EditDoc() {
             initialValue={fullDoc.text}
             onEditorChange={handleEditorChange}
           />
+          </div>
+
           <div className="mb-4">
             <label
               htmlFor="author"

@@ -52,7 +52,7 @@ const NewForm: React.FC = () => {
   };
 
   return (
-    <div className="max-w-md mb-32 mt-10 mx-auto p-6 bg-violet-200 rounded-md shadow-md">
+    <div className=" max-w-3xl mb-32 mt-10 p-6 bg-violet-200 rounded-md shadow-md">
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label
@@ -110,9 +110,9 @@ const NewForm: React.FC = () => {
           <Link
             href="/"
             type="button"
-            className="ml-2 px-4 py-2 bg-red-600 text-black rounded-md hover:bg-red-700 focus:outline-none focus:ring"
+            className="ml-2 px-4 py-2 bg-orange-500 text-black rounded-md hover:bg-red-700 focus:outline-none focus:ring"
           >
-            Avbryt
+            Tillbaka
           </Link>
         </div>
       </form>
