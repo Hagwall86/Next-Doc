@@ -65,6 +65,7 @@ const NewForm: React.FC = () => {
             type="text"
             id="title"
             name="title"
+            required
             value={formData.title}
             onChange={handleChange}
             className="text-black w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
@@ -92,6 +93,7 @@ const NewForm: React.FC = () => {
           <input
             type="text"
             id="author"
+            required
             name="author"
             value={formData.author}
             onChange={handleChange}
