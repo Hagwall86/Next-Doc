@@ -1,7 +1,7 @@
 "use client";
 
-import EditForm from "@/components/NewForm";
+import NewForm from "@/components/NewForm";
 
 export default function NewDoc() {
-  return <EditForm />;
+  return <NewForm />;
 }
